@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    margin-bottom: 0.5rem;
+    justify-content: flex-end;
+}
+
+.score {
+    padding: 0.5rem;
+    background-color: #AFF49F;
+    margin-left: 7.5rem;
+}
+
+.notif {
+    padding: 0.5rem;
+    background-color: #90F575;
+}
