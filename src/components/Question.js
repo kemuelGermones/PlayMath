@@ -9,7 +9,7 @@ const Question = () => {
     return (
         <div className={classes.container}>
             <Header />
-            <div className={classes.question}>{`${gameCtx.question.a}x${gameCtx.question.b}`}</div>
+            <div className={classes.question}>{ gameCtx.isPlaying && `${gameCtx.question.a}x${gameCtx.question.b}` }</div>
         </div>
     )
 }

@@ -35,26 +35,6 @@ const Choices = () => {
                     {gameCtx.isPlaying && gameCtx.question.choices[3]}
                 </PrimaryButton>
             </li>
-            {/* <li>
-                <button onClick={gameCtx.isPlaying ? isCorrect.bind(null, gameCtx.question.choices[0]) : null}>
-                    {gameCtx.isPlaying ? gameCtx.question.choices[0] : '' }
-                </button>
-            </li>
-            <li>
-                <button onClick={gameCtx.isPlaying ? isCorrect.bind(null, gameCtx.question.choices[1]) : null}>
-                    {gameCtx.isPlaying ? gameCtx.question.choices[1] : '' }
-                </button>
-            </li>
-            <li>
-                <button onClick={gameCtx.isPlaying ? isCorrect.bind(null, gameCtx.question.choices[2]) : null}>
-                    {gameCtx.isPlaying ? gameCtx.question.choices[2] : '' }
-                </button>
-            </li>
-            <li>
-                <button onClick={gameCtx.isPlaying ? isCorrect.bind(null, gameCtx.question.choices[3]) : null}>
-                    {gameCtx.isPlaying ? gameCtx.question.choices[3] : '' }
-                </button>
-            </li> */}
         </ul>
     );
 }

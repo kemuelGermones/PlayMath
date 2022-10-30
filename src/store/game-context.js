@@ -1,78 +1,113 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import Question from '../lib/question';
 
-const GameContext = React.createContext({
-    timeRemaining: 0,
+const initialState = {
+    timeRemaining: 30,
+    isCountDown: false,
     isGameOver: false,
     isPlaying: false,
-    question: null,
+    question: {},
     showModal: true,
     score: 0,
+}
+
+const GameContext = React.createContext({
+    ...initialState,
     startPlaying: () => {},
     resetGame: () => {},
     correctAns: () => {},
 });
 
+const gameReducer = (state, action) => {
+    if (action.type === 'START_COUNTDOWN') {
+        return {
+            timeRemaining: state.timeRemaining,
+            isCountDown: true,
+            isGameOver: state.isGameOver,
+            isPlaying: state.isPlaying,
+            question: state.question,
+            showModal: state.showModal,
+            score: state.score,
+        }
+    }
+    if (action.type === 'CORRECT_ANS') {
+        return {
+            timeRemaining: state.timeRemaining,
+            isCountDown: state.isCountDown,
+            isGameOver: state.isGameOver,
+            isPlaying: state.isPlaying,
+            question: new Question().generateQuestion('multiplication'),
+            showModal: state.showModal,
+            score: state.score + 1,
+        }
+    }
+    if (action.type === 'PLAYING') {
+        return {
+            timeRemaining: state.timeRemaining,
+            isCountDown: false,
+            isGameOver: false,
+            isPlaying: true,
+            question: new Question().generateQuestion('multiplication'),
+            showModal: false,
+            score: 0,
+        }
+    }
+    if (action.type === 'DECREASE_TIME') {
+        return {
+            timeRemaining: state.timeRemaining - 1,
+            isCountDown: state.isCountDown,
+            isGameOver: state.isGameOver,
+            isPlaying: state.isPlaying,
+            question: state.question,
+            showModal: state.showModal,
+            score: state.score,
+        }
+    }
+    if (action.type === 'RESET') {
+        return initialState
+    }
+}
+
 let timer;
 
 export const GameContextProvider = ({ children }) => {
-    const [time, setTime] = useState(30);
-    const [gameOver, setGameOver] = useState(false);
-    const [playing, setPlaying] = useState(false);
-    const [question, setQuestion] = useState({});
-    const [score, setScore] = useState(0);
-    const [isShowModal, setIsShowModal] = useState(true);
+    const [gameState, dispatch] = useReducer(gameReducer, initialState);
+
+    const resetGame = () => {
+        dispatch({ type: 'RESET'});
+        clearInterval(timer);
+    }
+
+    const startPlaying = () => {
+        dispatch({ type: 'START_COUNTDOWN'});
+        setTimeout(() => {
+            dispatch({ type: 'PLAYING'});
+            timer = setInterval(() => {
+                dispatch({ type: 'DECREASE_TIME'});
+            }, 1000)
+        }, 3000);
+    }
+
+    const correctAns = () => {
+        dispatch({ type: 'CORRECT_ANS'});
+    }
 
     useEffect(() => {
-        if (time === 0 && timer) {
-            setIsShowModal(true);
-            setTime(30);
-            clearInterval(timer);
-            setGameOver(true);
-            setPlaying(false);
-            setQuestion('');
+        if (gameState.timeRemaining === 0) {
+           resetGame();
         }
-    }, [time]);
-
-    const correctAnsHandler = () => {
-        setQuestion(new Question().generateQuestion('multiplication'));
-        setScore(state => state + 1);
-    }
-
-    const playingHandler = () => {
-        setIsShowModal(false);
-        setQuestion(new Question().generateQuestion('multiplication'));
-        setPlaying(true);
-        setGameOver(false);
-        setScore(0);
-        timer = setInterval(() => {
-            setTime(state => state - 1);
-        }, 1000);
-    }
-
-    const resetGameHandler = () => {
-        setIsShowModal(true);
-        setTime(30);
-        setPlaying(false);
-        clearInterval(timer);
-        setScore(0);
-    }
+    }, [gameState.timeRemaining]);
 
     const contextValue = {
-        timeRemaining: time,
-        isGameOver: gameOver,
-        isPlaying: playing,
-        question,
-        score,
-        showModal: isShowModal,
-        startPlaying: playingHandler,
-        resetGame: resetGameHandler,
-        correctAns: correctAnsHandler
+        ...gameState,
+        startPlaying,
+        correctAns,
+        resetGame
     }
 
     return (
         <GameContext.Provider value={contextValue}>
-            { children }
+            {children}
         </GameContext.Provider>
     )
 }

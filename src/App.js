@@ -1,4 +1,4 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext } from "react";
 
 import Card from "./components/UI/Card";
 import Question from './components/Question';
@@ -9,7 +9,6 @@ import GameContext from "./store/game-context";
 
 function App() {
   const gameCtx = useContext(GameContext);
-
   return (
     <Fragment>
       {gameCtx.showModal && <Modal />}
