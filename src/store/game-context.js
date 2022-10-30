@@ -6,10 +6,11 @@ const GameContext = React.createContext({
     isGameOver: false,
     isPlaying: false,
     question: null,
+    showModal: true,
     score: 0,
     startPlaying: () => {},
     resetGame: () => {},
-    correctAns: () => {}
+    correctAns: () => {},
 });
 
 let timer;
@@ -20,9 +21,11 @@ export const GameContextProvider = ({ children }) => {
     const [playing, setPlaying] = useState(false);
     const [question, setQuestion] = useState({});
     const [score, setScore] = useState(0);
+    const [isShowModal, setIsShowModal] = useState(true);
 
     useEffect(() => {
         if (time === 0 && timer) {
+            setIsShowModal(true);
             setTime(30);
             clearInterval(timer);
             setGameOver(true);
@@ -37,6 +40,7 @@ export const GameContextProvider = ({ children }) => {
     }
 
     const playingHandler = () => {
+        setIsShowModal(false);
         setQuestion(new Question().generateQuestion('multiplication'));
         setPlaying(true);
         setGameOver(false);
@@ -47,6 +51,7 @@ export const GameContextProvider = ({ children }) => {
     }
 
     const resetGameHandler = () => {
+        setIsShowModal(true);
         setTime(30);
         setPlaying(false);
         clearInterval(timer);
@@ -59,6 +64,7 @@ export const GameContextProvider = ({ children }) => {
         isPlaying: playing,
         question,
         score,
+        showModal: isShowModal,
         startPlaying: playingHandler,
         resetGame: resetGameHandler,
         correctAns: correctAnsHandler

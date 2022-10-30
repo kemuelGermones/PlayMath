@@ -1,16 +1,9 @@
 .container {
     display: flex;
-    margin-bottom: 0.5rem;
-    justify-content: flex-end;
+    justify-content: space-between;
+    color: #382b22;
 }
 
-.score {
+.container div{
     padding: 0.5rem;
-    background-color: #AFF49F;
-    margin-left: 7.5rem;
-}
-
-.notif {
-    padding: 0.5rem;
-    background-color: #90F575;
 }

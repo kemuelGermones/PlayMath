@@ -9,12 +9,8 @@ const Header = () => {
 
     return (
         <div className={classes.container}>
-            <div className={classes.notif}>
-                Correct
-            </div>
-            <div className={classes.score}>
-                Score: {gameCtx.score}
-            </div>
+            <div>Time Remaining: {gameCtx.timeRemaining}</div>
+            <div>Score: {gameCtx.score}</div>
         </div>
     );
 }

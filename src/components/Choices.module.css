@@ -1,17 +1,11 @@
 .container {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
+    margin: 0;
     padding: 0;
+    margin-bottom: 1rem;
 }
 
 .container li {
     list-style: none;
-}
-
-.container li button {
-    width: 6.5rem;
-    height: 4rem;
-    background-color: white;
-    border: none;
 }
