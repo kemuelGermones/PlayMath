@@ -63,8 +63,15 @@ const gameReducer = (state, action) => {
             score: state.score,
         }
     }
+    if (action.type === 'GAME_OVER') {
+        return {
+            ...initialState,
+            isGameOver: true,
+            score: state.score
+        }
+    }
     if (action.type === 'RESET') {
-        return initialState
+        return initialState;
     }
 }
 
@@ -74,7 +81,7 @@ export const GameContextProvider = ({ children }) => {
     const [gameState, dispatch] = useReducer(gameReducer, initialState);
 
     const resetGame = () => {
-        dispatch({ type: 'RESET'});
+        dispatch({ type: 'GAME_OVER'});
         clearInterval(timer);
     }
 
