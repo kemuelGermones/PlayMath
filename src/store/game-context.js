@@ -36,7 +36,7 @@ const gameReducer = (state, action) => {
             isCountDown: state.isCountDown,
             isGameOver: state.isGameOver,
             isPlaying: state.isPlaying,
-            question: new Question().generateQuestion('multiplication'),
+            question: new Question().generateQuestion('division'),
             showModal: state.showModal,
             score: state.score + 1,
         }
@@ -47,7 +47,7 @@ const gameReducer = (state, action) => {
             isCountDown: false,
             isGameOver: false,
             isPlaying: true,
-            question: new Question().generateQuestion('multiplication'),
+            question: new Question().generateQuestion('division'),
             showModal: false,
             score: 0,
         }
@@ -81,7 +81,7 @@ export const GameContextProvider = ({ children }) => {
     const [gameState, dispatch] = useReducer(gameReducer, initialState);
 
     const resetGame = () => {
-        dispatch({ type: 'GAME_OVER'});
+        dispatch({ type: 'RESET'});
         clearInterval(timer);
     }
 
@@ -101,7 +101,8 @@ export const GameContextProvider = ({ children }) => {
 
     useEffect(() => {
         if (gameState.timeRemaining === 0) {
-           resetGame();
+            dispatch({ type: 'GAME_OVER'});
+            clearInterval(timer);
         }
     }, [gameState.timeRemaining]);
 

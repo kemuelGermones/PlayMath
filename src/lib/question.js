@@ -4,6 +4,7 @@ class Question {
     this.a = 0;
     this.b = 0;
     this.answer = 0;
+    this.str = null
     this.choices = null;
   }
   
@@ -15,24 +16,28 @@ class Question {
         this.a = given.intOne;
         this.b = given.intTwo;
         this.answer = given.sum;
+        this.str = `${this.a}+${this.b}`
         break;
       case 'multiplication':
         given = this.multiply();
         this.a = given.intOne;
         this.b = given.intTwo;
         this.answer = given.product;
+        this.str = `${this.a}x${this.b}`
         break;
       case 'subtraction':
         given = this.add();
         this.a = given.sum;
         this.b = given.intOne;
         this.answer = this.a - this.b;
+        this.str = `${this.a}-${this.b}`
         break;
       case 'division':
         given = this.multiply();
         this.a = given.product;
         this.b = given.intOne;
-        this.answer = this.a / this.b
+        this.answer = this.a / this.b;
+        this.str = `${this.a}÷${this.b}`
         break;
       default:
         return undefined;

@@ -9,6 +9,7 @@ import GameContext from "./store/game-context";
 
 function App() {
   const gameCtx = useContext(GameContext);
+  
   return (
     <Fragment>
       {gameCtx.showModal && <Modal />}
