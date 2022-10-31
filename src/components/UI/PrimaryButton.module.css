@@ -1,7 +1,6 @@
 .button {
     width: 5rem;
     height: 5rem;
-    /* padding: 2.5rem 2.5rem; */
     margin: 0;
     border-radius: 3px;
     font-family: 'Press Start 2P';
@@ -18,4 +17,11 @@
     -ms-transform: translate(0px, 5px);
     transform: translate(0px, 5px);
     border-bottom: 1px solid #FFF;
+}
+
+@media screen and (max-width: 550px) {
+    .button {
+        width: 4rem;
+        height: 4rem;
+    }
 }

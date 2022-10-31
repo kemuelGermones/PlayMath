@@ -13,7 +13,7 @@ const Modal = () => {
     const onCLickHandler = () => {
         gameCtx.startPlaying();
         timer = setInterval(() => {
-            if (countDown ===0) return clearInterval(timer);
+            if (countDown === 0) return clearInterval(timer);
             setCountDown(state => state - 1);
         }, 1000);
     }
@@ -23,7 +23,9 @@ const Modal = () => {
         <Fragment>
             <Backdrop />
             <div className={classes.modal}>
-                { gameCtx.isCountDown ? <h1>{countDown}</h1> :
+                { 
+                    gameCtx.isCountDown ? 
+                    <h1>{countDown}</h1> :
                     <Fragment>
                         <h1>
                             {gameCtx.isGameOver ? 'Game Over' : 'PlayMath'}

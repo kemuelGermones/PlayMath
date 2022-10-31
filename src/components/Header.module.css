@@ -4,6 +4,12 @@
     color: #382b22;
 }
 
-.container div{
+.container div {
     padding: 0.5rem;
+}
+
+@media screen and (max-width: 550px) {
+    .container div {
+        font-size: 0.6rem;
+    }
 }
