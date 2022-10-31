@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import Question from '../lib/question';
 
 const initialState = {
-    timeRemaining: 30,
+    timeRemaining: 60,
     isCountDown: false,
     isGameOver: false,
     isPlaying: false,
