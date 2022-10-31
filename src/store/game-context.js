@@ -9,6 +9,7 @@ const initialState = {
     question: {},
     showModal: true,
     score: 0,
+    currentCategory: null
 }
 
 const GameContext = React.createContext({
@@ -28,6 +29,7 @@ const gameReducer = (state, action) => {
             question: state.question,
             showModal: state.showModal,
             score: state.score,
+            currentCategory: state.currentCategory
         }
     }
     if (action.type === 'CORRECT_ANS') {
@@ -36,9 +38,10 @@ const gameReducer = (state, action) => {
             isCountDown: state.isCountDown,
             isGameOver: state.isGameOver,
             isPlaying: state.isPlaying,
-            question: new Question().generateQuestion('division'),
+            question: new Question().generateQuestion(state.currentCategory),
             showModal: state.showModal,
             score: state.score + 1,
+            currentCategory: state.currentCategory
         }
     }
     if (action.type === 'PLAYING') {
@@ -47,9 +50,10 @@ const gameReducer = (state, action) => {
             isCountDown: false,
             isGameOver: false,
             isPlaying: true,
-            question: new Question().generateQuestion('division'),
+            question: new Question().generateQuestion(action.category),
             showModal: false,
             score: 0,
+            currentCategory: action.category
         }
     }
     if (action.type === 'DECREASE_TIME') {
@@ -61,6 +65,7 @@ const gameReducer = (state, action) => {
             question: state.question,
             showModal: state.showModal,
             score: state.score,
+            currentCategory: state.currentCategory
         }
     }
     if (action.type === 'GAME_OVER') {
@@ -85,10 +90,10 @@ export const GameContextProvider = ({ children }) => {
         clearInterval(timer);
     }
 
-    const startPlaying = () => {
+    const startPlaying = (type) => {
         dispatch({ type: 'START_COUNTDOWN'});
         setTimeout(() => {
-            dispatch({ type: 'PLAYING'});
+            dispatch({ type: 'PLAYING', category: type });
             timer = setInterval(() => {
                 dispatch({ type: 'DECREASE_TIME'});
             }, 1000)
