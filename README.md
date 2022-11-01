@@ -2,7 +2,7 @@
 
 PlayMath is a math game that tests your mathematical skills in addition, subtraction, multiplication and division. 
 
-### [Live Site](https://appblast-f0ac4.web.app)
+### [Live Site](https://playmath-a4738.web.app/)
 
 ![Online Forum Application](https://res.cloudinary.com/de9dxfdav/image/upload/v1667231699/Project%20Promotion/Screenshot_2022-10-31_235131_cy0nhw.jpg)
 
