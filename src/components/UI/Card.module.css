@@ -1,19 +1,19 @@
 .card {
-    background-color: #b18597;
-    border-radius: 1rem;
-    width: 30rem;
-    padding: 1rem;
-    height: 25rem;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%);
+  background-color: #b18597;
+  border-radius: 1rem;
+  width: 30rem;
+  padding: 1rem;
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media screen and (max-width: 550px) {
-    .card {
-        width: 90vw;
-    }
+  .card {
+    width: 90vw;
+  }
 }

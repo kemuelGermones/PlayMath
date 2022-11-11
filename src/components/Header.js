@@ -1,18 +1,17 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 
-import classes from './Header.module.css';
-import GameContext from '../store/game-context';
-
+import classes from "./Header.module.css";
+import GameContext from "../store/game-context";
 
 const Header = () => {
-    const gameCtx = useContext(GameContext);
+  const gameCtx = useContext(GameContext);
 
-    return (
-        <div className={classes.container}>
-            <div>Time Remaining: {gameCtx.timeRemaining}</div>
-            <div>Score: {gameCtx.score}</div>
-        </div>
-    );
-}
+  return (
+    <div className={classes.container}>
+      <div>Time Remaining: {gameCtx.timeRemaining}</div>
+      <div>Score: {gameCtx.score}</div>
+    </div>
+  );
+};
 
 export default Header;

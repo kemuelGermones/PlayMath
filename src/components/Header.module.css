@@ -1,15 +1,15 @@
 .container {
-    display: flex;
-    justify-content: space-between;
-    color: #382b22;
+  display: flex;
+  justify-content: space-between;
+  color: #382b22;
 }
 
 .container div {
-    padding: 0.5rem;
+  padding: 0.5rem;
 }
 
 @media screen and (max-width: 550px) {
-    .container div {
-        font-size: 0.6rem;
-    }
+  .container div {
+    font-size: 0.6rem;
+  }
 }

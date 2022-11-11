@@ -4,40 +4,40 @@ class Question {
     this.a = 0;
     this.b = 0;
     this.answer = 0;
-    this.str = null
+    this.str = null;
     this.choices = null;
   }
-  
+
   generateQuestion(type) {
     let given;
     switch (type) {
-      case 'addition':
+      case "addition":
         given = this.add();
         this.a = given.intOne;
         this.b = given.intTwo;
         this.answer = given.sum;
-        this.str = `${this.a}+${this.b}`
+        this.str = `${this.a}+${this.b}`;
         break;
-      case 'multiplication':
+      case "multiplication":
         given = this.multiply();
         this.a = given.intOne;
         this.b = given.intTwo;
         this.answer = given.product;
-        this.str = `${this.a}x${this.b}`
+        this.str = `${this.a}x${this.b}`;
         break;
-      case 'subtraction':
+      case "subtraction":
         given = this.add();
         this.a = given.sum;
         this.b = given.intOne;
         this.answer = this.a - this.b;
-        this.str = `${this.a}-${this.b}`
+        this.str = `${this.a}-${this.b}`;
         break;
-      case 'division':
+      case "division":
         given = this.multiply();
         this.a = given.product;
         this.b = given.intOne;
         this.answer = this.a / this.b;
-        this.str = `${this.a}÷${this.b}`
+        this.str = `${this.a}÷${this.b}`;
         break;
       default:
         return undefined;
@@ -55,30 +55,30 @@ class Question {
       if (!choices[i]) {
         let res, given;
         switch (type) {
-          case 'addition':
+          case "addition":
             do {
               res = this.add().sum;
-            } while (choices.indexOf(res) > -1)
+            } while (choices.indexOf(res) > -1);
             choices[i] = res;
             break;
-          case 'multiplication':
+          case "multiplication":
             do {
               res = this.multiply().product;
-            } while (choices.indexOf(res) > -1)
+            } while (choices.indexOf(res) > -1);
             choices[i] = res;
             break;
-          case 'subtraction':
+          case "subtraction":
             do {
-              given = this.add()
+              given = this.add();
               res = given.sum - given.intOne;
-            } while (choices.indexOf(res) > -1)
+            } while (choices.indexOf(res) > -1);
             choices[i] = res;
             break;
-          case 'division':
+          case "division":
             do {
               given = this.multiply();
               res = given.product / given.intOne;
-            } while (choices.indexOf(res) > -1)
+            } while (choices.indexOf(res) > -1);
             choices[i] = res;
             break;
         }
@@ -91,16 +91,15 @@ class Question {
     const intOne = Math.floor(Math.random() * 49) + 1;
     const intTwo = Math.floor(Math.random() * 49) + 1;
     const sum = intOne + intTwo;
-    return { intOne, intTwo, sum }
+    return { intOne, intTwo, sum };
   }
 
   multiply() {
     const intOne = Math.floor(Math.random() * 9) + 1;
     const intTwo = Math.floor(Math.random() * 9) + 1;
     const product = intOne * intTwo;
-    return { intOne, intTwo, product }
+    return { intOne, intTwo, product };
   }
-
 }
 
 export default Question;
